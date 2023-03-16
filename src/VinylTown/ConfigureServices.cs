@@ -20,7 +20,7 @@ public static class ConfigureServices
         }
 
         services.AddMediatR(typeof(Program));
-        services.AddScoped<AppDbContextSeed>();
+        
 
 
         services.AddControllersWithViews();

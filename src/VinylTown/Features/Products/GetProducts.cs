@@ -5,24 +5,6 @@ using VinylTown.Data;
 
 namespace VinylTown.Features.Products;
 
-[Route("api/Catalog")]
-public class GetProductsController : Controller
-{
-    private readonly IMediator _mediator;
-    public GetProductsController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    [HttpGet]
-    public async Task<object> GetProductsAsync()
-    {
-        var viewModel = await _mediator.Send(new GetProductsQuery());
-
-        return viewModel;
-    }
-}
-
 public record GetProductsQuery : IRequest<ProductsViewModel>;
 
 public class ProductsViewModel
@@ -35,7 +17,8 @@ public class ProductSummaryViewModel
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
-    public string ImageUrl { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int Stock { get; set; }
     public int ProductAuthorId { get; set; }
     public int ProductGenreId { get; set; }
 }
@@ -52,12 +35,14 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, Product
     {
         var result = new ProductsViewModel();
         result.Products = await _context.Products
+            .AsNoTracking()
             .Select(p => new ProductSummaryViewModel
             {
                 Id = p.Id,
                 Name = p.Name,
                 Price = p.Price,
-                ImageUrl = p.ImageUrl,
+                Image = p.Image,
+                Stock = p.Stock,
                 ProductAuthorId = p.ProductAuthorId,
                 ProductGenreId = p.ProductGenreId
             }).ToArrayAsync(cancellationToken);

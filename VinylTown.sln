@@ -5,15 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4273851C-0805-4DF6-AB65-FFA87E1274B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinylTown", "src\VinylTown\VinylTown.csproj", "{45E6C9E3-4747-4903-8894-053EEC308752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VinylTown", "src\VinylTown\VinylTown.csproj", "{45E6C9E3-4747-4903-8894-053EEC308752}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{45E6C9E3-4747-4903-8894-053EEC308752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -21,7 +18,13 @@ Global
 		{45E6C9E3-4747-4903-8894-053EEC308752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45E6C9E3-4747-4903-8894-053EEC308752}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{45E6C9E3-4747-4903-8894-053EEC308752} = {4273851C-0805-4DF6-AB65-FFA87E1274B7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC026A47-CEB1-4CEF-A91A-479DFBCBF56B}
 	EndGlobalSection
 EndGlobal

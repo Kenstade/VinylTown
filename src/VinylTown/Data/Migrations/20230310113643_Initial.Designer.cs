@@ -11,7 +11,7 @@ using VinylTown.Data;
 namespace VinylTown.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230205182419_Initial")]
+    [Migration("20230310113643_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -19,7 +19,7 @@ namespace VinylTown.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -33,11 +33,12 @@ namespace VinylTown.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -51,6 +52,9 @@ namespace VinylTown.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ProductGenreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Stock")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

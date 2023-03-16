@@ -6,29 +6,14 @@ using VinylTown.Data;
 
 namespace VinylTown.Features.Products;
 
-[Route("api/Catalog")]
-public class UpdateProductController : Controller
-{
-    private readonly IMediator _mediator;
-	public UpdateProductController(IMediator mediator)
-	{
-		_mediator = mediator;
-	}
-
-	[HttpPut("id")]
-	public async Task<IActionResult> UpdateProductAsync(UpdateProductCommand command)
-	{
-		return Ok(await _mediator.Send(command));
-	}
-}
-
 public record UpdateProductCommand : IRequest
 {
 	public int Id { get; init; }
 	public string Name { get; init; } = string.Empty;
 	public string? Description { get; init; }
 	public decimal Price { get; init; }
-	public string ImageUrl { get; init; } = string.Empty;
+	public string Image { get; init; } = string.Empty;
+	public int Stock { get; init; }
 	public int ProductAuthorId { get; init; }
 	public int ProductGenreId { get; init; }
 }
@@ -52,7 +37,8 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
 		product.Name = request.Name;
 		product.Description = request.Description;
 		product.Price = request.Price;
-		product.ImageUrl = request.ImageUrl;
+		product.Image = request.Image;
+		product.Stock = request.Stock;
 		product.ProductAuthorId = request.ProductAuthorId;
 		product.ProductGenreId = request.ProductGenreId;
 

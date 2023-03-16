@@ -43,7 +43,8 @@ public class ProductDetailsViewModel
     public string Name { get; set; } = string.Empty;
     public string? Description { get; set; }
     public decimal Price { get; set; }
-    public string ImageUrl { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int Stock { get; set; }
     public int ProductAuthorId { get; set; }
     public int ProductGenreId { get; set; }
 }
@@ -58,7 +59,9 @@ public class GetProductDetailsQueryHandler : IRequestHandler<GetProductDetailsQu
 
     public async Task<ProductDetailsViewModel> Handle(GetProductDetailsQuery request, CancellationToken cancellationToken)
     {
-        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == request.Id);
+        var product = await _context.Products
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == request.Id);
 
         if (product == null)
         {
@@ -71,7 +74,8 @@ public class GetProductDetailsQueryHandler : IRequestHandler<GetProductDetailsQu
             Name = product.Name,
             Description = product.Description,
             Price = product.Price,
-            ImageUrl = product.ImageUrl,
+            Image = product.Image,
+            Stock = product.Stock,
             ProductAuthorId = product.ProductAuthorId,
             ProductGenreId = product.ProductGenreId
         };

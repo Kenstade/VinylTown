@@ -5,28 +5,13 @@ using VinylTown.Domain;
 
 namespace VinylTown.Features.Products;
 
-[Route("api/Catalog")]
-public class CreateProductController : Controller
-{
-    private readonly IMediator _mediator;
-	public CreateProductController(IMediator mediator)
-	{
-		_mediator = mediator;
-	}
-	[HttpPost]
-	public async Task<int> CreateProductAsync(CreateProductCommand command)
-	{
-		return await _mediator.Send(command);
-	}
-
-}
-
 public record CreateProductCommand : IRequest<int>
 {
     public string Name { get; init; } = string.Empty;
     public string? Description { get; init; }
     public decimal Price { get; init; }
-    public string ImageUrl { get; init; } = string.Empty;
+    public string Image { get; init; } = string.Empty;
+    public int Stock { get; init; }
     public int ProductAuthorId { get; init; }
     public int ProductGenreId { get; init; }
 }
@@ -46,7 +31,8 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
         entity.Name = request.Name;
         entity.Description = request.Description;
         entity.Price = request.Price;
-        entity.ImageUrl = request.ImageUrl;
+        entity.Image = request.Image;
+        entity.Stock = request.Stock;
         entity.ProductAuthorId = request.ProductAuthorId;
         entity.ProductGenreId = request.ProductGenreId;
 

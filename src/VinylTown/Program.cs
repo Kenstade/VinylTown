@@ -7,11 +7,7 @@ builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var seed = scope.ServiceProvider.GetRequiredService<AppDbContextSeed>();
-    await seed.SeedAsync();
-}
+AppDbContextSeed.EnsureSeedData(app).Wait();
 
 if (app.Environment.IsDevelopment())
 {
