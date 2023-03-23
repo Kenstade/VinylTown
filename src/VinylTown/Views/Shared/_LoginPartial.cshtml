@@ -1,0 +1,24 @@
+﻿@if (Context.User.Identity.IsAuthenticated)
+{
+     <li class="nav-item me-3 me-lg-0 dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @Context.User.Identity.Name
+          </a>
+          <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm">
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Aboba</a></li>
+            <li><hr class="dropdown-divider"/></li>
+            <li>
+                <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+            </li>
+          </ul>
+        </form>
+     </li>
+}
+else
+{
+    <li class="nav-item me-3 me-lg-0">
+        <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
