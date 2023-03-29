@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using VinylTown.Features.Products;
 
 namespace VinylTown.Controllers;
-
 public class CatalogController : Controller
 {
     private readonly IMediator _mediator;
@@ -14,31 +13,48 @@ public class CatalogController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string search = "", int page = 1)
     {
-        var viewModel = await _mediator.Send(new GetProductsQuery());
-
+        var viewModel = await _mediator.Send(new GetProductsQuery { PageNumber = page, Search = search });
+        ViewBag.Search = search;
         return View(viewModel);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateProduct(CreateProductCommand command)
+    [HttpGet("products/{id}")]
+    public async Task<IActionResult> ProductDetails(int id)
     {
-        var viewModel = await _mediator.Send(command);
+        if (id <= 0)
+        {
+            return BadRequest();
+        }
+
+        var viewModel = await _mediator.Send(new GetProductDetailsQuery { Id = id });
+
+        if (viewModel == null)
+        {
+            return BadRequest("afesdf");
+        }
         return View(viewModel);
     }
 
-    [HttpPut("id")]
-    public async Task<IActionResult> UpdateProductAsync(UpdateProductCommand command)
-    {
-        return Ok(await _mediator.Send(command));
-    }
+    //[HttpPost]
+    //public async Task<IActionResult> CreateProduct(CreateProductCommand command)
+    //{
+    //    var viewModel = await _mediator.Send(command);
+    //    return View(viewModel);
+    //}
 
-    [HttpDelete("id")]
-    public async Task<IActionResult> DeleteProductAsync(int id)
-    {
-        await _mediator.Send(new DeleteProductCommand(id));
+    //[HttpPut("id")]
+    //public async Task<IActionResult> UpdateProductAsync(UpdateProductCommand command)
+    //{
+    //    return Ok(await _mediator.Send(command));
+    //}
 
-        return NoContent();
-    }
+    //[HttpDelete("id")]
+    //public async Task<IActionResult> DeleteProductAsync(int id)
+    //{
+    //    await _mediator.Send(new DeleteProductCommand(id));
+
+    //    return NoContent();
+    //}
 }

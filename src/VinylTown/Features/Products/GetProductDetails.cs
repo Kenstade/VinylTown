@@ -5,33 +5,6 @@ using VinylTown.Data;
 
 namespace VinylTown.Features.Products;
 
-[Route("api/Catalog")]
-public class GetProductDetailsController : Controller
-{
-    private readonly IMediator _mediator;
-    public GetProductDetailsController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetProductDetailsAsync(int id)
-    {
-        if (id <= 0)
-        {
-            return BadRequest();
-        }
-
-        var viewModel = await _mediator.Send(new GetProductDetailsQuery { Id = id});
-
-        if (viewModel == null)
-        {
-            return BadRequest("afesdf");
-        }
-        return Ok(viewModel);
-    }
-}
-
 public record GetProductDetailsQuery : IRequest<ProductDetailsViewModel>
 {
     public int Id { get; init; }

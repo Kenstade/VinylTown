@@ -12,37 +12,69 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" asp-controller="Catalog" asp-action="Index">
-              <i class="fa-solid fa-compact-disc fa-2x mx-3 ps-1"></i>                 
-            </a>
-            <div class="collapse navbar-collapse">
-              <form class="me-3">
-                <div class="form-white input-group" style="width: 250px;">
-                  <input type="search" class="form-control rounded" placeholder="Vinyls everywhere!" />
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Catalog" asp-action="Index">
+                    <i class="fa-solid fa-compact-disc fa-2x mx-3 ps-1"></i>
+                </a>
+                <div class="collapse navbar-collapse">
+                    <form method="get" asp-controller="Catalog" asp-action="Index" class="me-3">
+                        <div class="form-white input-group" style="width: 250px;">
+                            <input value="@ViewBag.Search" type="search" class="form-control rounded" placeholder="Search" name="search"/>
+                             <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-search"></i>
+                             </button>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shipping</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav d-flex flex-row ms-auto me-3">
+                        <partial name="_LoginPartial" />
+                    </ul>
                 </div>
-              </form>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Shipping</a>
-                </li>
-              </ul>
-              <ul class="navbar-nav d-flex flex-row ms-auto me-3">                 
-                   <partial name="_LoginPartial" /> 
-              </ul>
             </div>
-          </div>
         </nav>
     </header>
             
      @RenderBody()
 
-    <footer class="border-top footer text-muted bg-dark">
-        <div class="container">
-            &copy; 2023 - VinylTown 
+    <footer class="text-white text-center text-lg-start bg-dark">
+        <div class="container p-4">
+            <div class="row mt-4">
+                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Logo</h5>
+
+                    <p>
+                        Description
+                    </p>
+
+                    <div class="mt-4">
+                        <a class="btn btn-icon btn-light" target="_blank" href="#"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4 pb-1">About</h5>
+
+                    <ul class="fa-ul" style="margin-left: 1.65em;">
+                        <li class="mb-3">
+                            <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">contact@example.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Services</h5>       
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <div>VinylTown Project</div>
         </div>
     </footer>
 

@@ -1,0 +1,31 @@
+﻿@model VinylTown.ViewModels.PagingInfo
+
+<ul class="pagination justify-content-center">
+    <li class="page-item @(Model.PageNumber < 2 ? "disabled" : "")">
+        <a class="page-link" 
+        asp-controller="Catalog" 
+        asp-action="Index" 
+        asp-route-page="@(Model.PageNumber - 1)" 
+        aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    @for (int pag = 1; pag <=  Model.TotalPages; pag++)
+    {
+        <li class="page-item @(pag == Model.PageNumber ? "active" : "")">
+            <a class="page-link" 
+            asp-controller="Catalog" 
+            asp-action="Index" 
+            asp-route-page="@pag">@pag</a>
+        </li>
+    }
+    <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+        <a class="page-link" 
+        asp-controller="Catalog" 
+        asp-action="Index" 
+        asp-route-page="@(Model.PageNumber + 1)" 
+        aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>

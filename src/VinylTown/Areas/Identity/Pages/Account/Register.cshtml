@@ -4,36 +4,39 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="container">
+<div class="container py-5 ">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class=" col-xl-4">
+            <div class="card bg-white text-dark" style="border-radius: 1rem;">
+                <div class="card-body p-4 text-center">
+                    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="pb-5">
+                            <h2 class="fw-bold mb-4 text-uppercase">Create account</h2>
 
-    <h2>@ViewData["Title"]</h2>
+                            <div class="form-outline form-white mb-4">
+                                <input placeholder="Email" type="email" id="typeEmailX" class="form-control" asp-for="Input.Email" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
 
-    <div class="row">
-        <div class="col-md-8">
-            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h4>Create a new account.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            <div class="form-outline form-white mb-4">
+                                <input placeholder="Password" type="password" id="typePasswordX" class="form-control" asp-for="Input.Password" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <input placeholder="Confirm password" type="password" id="typePasswordX" class="form-control" 
+                                asp-for="Input.ConfirmPassword" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            <button class="btn btn-dark btn-lg px-5" type="submit">Create</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.ConfirmPassword"></label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                </div>
-                <button type="submit" class="btn btn-default">Register</button>
-            </form>
+            </div>
         </div>
     </div>
-
 </div>
 
 @section Scripts {
