@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VinylTown.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -43,7 +43,7 @@
             
      @RenderBody()
 
-    <footer class="text-white text-center text-lg-start bg-dark">
+    <footer class="text-white text-center text-lg-start bg-dark mt-auto border-top">
         <div class="container p-4">
             <div class="row mt-4">
                 <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
@@ -72,9 +72,6 @@
                     <h5 class="text-uppercase mb-4">Services</h5>       
                 </div>
             </div>
-        </div>
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            <div>VinylTown Project</div>
         </div>
     </footer>
 

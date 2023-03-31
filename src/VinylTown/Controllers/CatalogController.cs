@@ -13,9 +13,9 @@ public class CatalogController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index(string search = "", int page = 1)
+    public async Task<IActionResult> Index(int? author,string search = "", int page = 1)
     {
-        var viewModel = await _mediator.Send(new GetProductsQuery { PageNumber = page, Search = search });
+        var viewModel = await _mediator.Send(new GetProductsQuery { PageNumber = page, Search = search, AuthorId = author });
         ViewBag.Search = search;
         return View(viewModel);
     }
@@ -36,25 +36,4 @@ public class CatalogController : Controller
         }
         return View(viewModel);
     }
-
-    //[HttpPost]
-    //public async Task<IActionResult> CreateProduct(CreateProductCommand command)
-    //{
-    //    var viewModel = await _mediator.Send(command);
-    //    return View(viewModel);
-    //}
-
-    //[HttpPut("id")]
-    //public async Task<IActionResult> UpdateProductAsync(UpdateProductCommand command)
-    //{
-    //    return Ok(await _mediator.Send(command));
-    //}
-
-    //[HttpDelete("id")]
-    //public async Task<IActionResult> DeleteProductAsync(int id)
-    //{
-    //    await _mediator.Send(new DeleteProductCommand(id));
-
-    //    return NoContent();
-    //}
 }
