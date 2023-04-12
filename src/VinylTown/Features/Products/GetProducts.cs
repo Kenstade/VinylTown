@@ -12,13 +12,13 @@ public record GetProductsQuery : IRequest<ProductsViewModel>
     public int PageNumber { get; init; }
     public int PageSize { get; init; } = 12;
     public string Search { get; init; } = "";
-    public int? AuthorId { get; init; }
+    public int? Genre { get; init; }
 }
 
 public class ProductsViewModel
 {
     public IEnumerable<ProductSummaryViewModel> Products { get; set; } = null!;
-    public SelectList ProductAuthors { get; set; } = null!;
+    public SelectList ProductGenres { get; set; } = null!;
     public PagingInfo PagingInfo { get; set;} = null!;
 }
 
@@ -30,7 +30,9 @@ public class ProductSummaryViewModel
     public string Image { get; set; } = string.Empty;
     public int Stock { get; set; }
     public int ProductAuthorId { get; set; }
+    public string Author { get; set; } = string.Empty;
     public int ProductGenreId { get; set; }
+    public string Genre { get; set; } = string.Empty;
 }
 
 public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, ProductsViewModel>
@@ -47,6 +49,7 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, Product
         var result = new ProductsViewModel();
 
         result.Products = await _context.Products
+        .Include(p => p.ProductGenre)
         .Include(p => p.ProductAuthor)
         .AsNoTracking()
         .Select(p => new ProductSummaryViewModel
@@ -56,18 +59,23 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, Product
             Price = p.Price,
             Image = p.Image,
             Stock = p.Stock,
-            ProductAuthorId = p.ProductAuthorId,
-            ProductGenreId = p.ProductGenreId
+            //ProductAuthorId = p.ProductAuthorId,
+            ProductGenreId = p.ProductGenreId,
+            Author = p.ProductAuthor.Author
         })
-        .Where(p =>!request.AuthorId.HasValue || p.ProductAuthorId == request.AuthorId)
-        .Where(p => EF.Functions.Like(p.Name, $"%{request.Search}%"))
+        .Where(p =>!request.Genre.HasValue || p.ProductGenreId == request.Genre)
+        .Where(p => EF.Functions.Like(p.Name, $"%{request.Search}%") || EF.Functions.Like(p.Author, $"%{request.Search}%"))
         .Skip((request.PageNumber - 1) * request.PageSize)
         .Take(request.PageSize)
         .ToArrayAsync(cancellationToken);
 
         
 
-        var total = await _context.Products.AsNoTracking().Where(p => EF.Functions.Like(p.Name, $"%{request.Search}%")).CountAsync();
+        var total = await _context.Products
+            .AsNoTracking()
+            .Where(p => !request.Genre.HasValue || p.ProductGenreId == request.Genre)
+            .Where(p => EF.Functions.Like(p.Name, $"%{request.Search}%"))
+            .CountAsync();
 
         result.PagingInfo = new PagingInfo()
         {

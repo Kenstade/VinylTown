@@ -13,9 +13,9 @@ public class CatalogController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index(int? author,string search = "", int page = 1)
+    public async Task<IActionResult> Index(int? genre,string search = "", int page = 1)
     {
-        var viewModel = await _mediator.Send(new GetProductsQuery { PageNumber = page, Search = search, AuthorId = author });
+        var viewModel = await _mediator.Send(new GetProductsQuery { PageNumber = page, Search = search, Genre = genre });
         ViewBag.Search = search;
         return View(viewModel);
     }
@@ -35,5 +35,20 @@ public class CatalogController : Controller
             return BadRequest("afesdf");
         }
         return View(viewModel);
+    }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> Search(string query, int pageNumber = 0, int pageSize = 12) 
+    {
+        var getProductsQuery = new GetProductsQuery
+        {
+            Search = query,
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        };
+
+        var vm = await _mediator.Send(getProductsQuery);
+
+        return new JsonResult(vm);
     }
 }

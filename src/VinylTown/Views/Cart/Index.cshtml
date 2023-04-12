@@ -1,0 +1,21 @@
+﻿@model VinylTown.Features.Cart.CartViewModel
+
+@{
+    ViewData["Title"] = "Your Shopping Cart";
+}
+
+@{
+    if (Model.Items.Any())
+    {
+        <div>
+            @foreach (var item in Model.Items)
+            {
+                @item.Name               
+            }
+        </div>
+    }
+    else
+    {
+        <h1>Aboba</h1>
+    }
+}

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VinylTown.Data;
+using VinylTown.Interfaces;
+using VinylTown.Services;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -27,12 +29,17 @@ public static class ConfigureServices
             options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
         });
 
+        
+
         services.AddIdentity<ApplicationUser,IdentityRole>()
             .AddDefaultUI()
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
         services.AddMediatR(typeof(Program));
+
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped<IUserService, UserService>();
         
         services.AddControllersWithViews();
         services.AddRazorPages();

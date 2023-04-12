@@ -15,36 +15,32 @@
     </div>
 </form>*@
 
-<div class="container py-3">
+
+<div id="product-container" class="container py-3">
     <div class="row">
         @{
             if (Model.Products.Any())
             {
                 foreach (var item in Model.Products)
                 {
-                    <div class="col-lg-3 mb-4">
+                    <div class="col-md-12 col-lg-3 mb-3 mb-4">
                         <div class="card">
                             <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@item.Id">
                                 <img src="~/images/catalog/@item.Image" class="card-img-top" alt="@item.Name" />
                             </a>
                             <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <p class="small"><a href="#!" class="text-muted">Author's name</a></p>
-                                    <h5 class="text-dark mb-0">$@item.Price.ToString("N2")</h5>
-                                </div>
-
-                                <div class="d-flex justify-content-between">
+                                <div class="text-center">
                                     <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@item.Id">
-                                        <h6 class="mb-0">@item.Name</h6>
+                                        <h6 class="mb-2">@item.Name</h6>
                                     </a>
-                                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                                    <h6 class="text-dark">$@item.Price.ToString("N2")</h6>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                 }
-                <partial name="_pagination" for="PagingInfo" />
+                <partial name="_pagination" for="PagingInfo"/>
             }
             else
             {

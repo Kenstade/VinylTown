@@ -14,6 +14,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 	public DbSet<Product> Products { get; set; }
 	public DbSet<ProductAuthor> ProductAuthors { get; set; }
 	public DbSet<ProductGenre> ProductGenres { get; set; }
+	public DbSet<CostumerCart> CostumerCarts { get; set; }
+	public DbSet<CartItem> CartItems { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{
