@@ -18,22 +18,24 @@
                 </a>
                 <div class="collapse navbar-collapse">
                     <form method="get" asp-controller="Catalog" asp-action="Index" class="me-3">
-                        <div class="form-white input-group" style="width: 250px;">
-                            <input value="@ViewBag.Search" type="search" class="form-control" placeholder="Search" name="search" 
-                            id="input">
+                        <div class="form-white input-group" style="width: 450px;">
+                            <input value="@ViewBag.Search" type="search" class="form-control shadow-none" placeholder="Search" name="search"
+                                   id="input">
                             <button class="input-group-text bg-white" type="submit">
                                 <img style="width:20px" src="~/images/svg/navbar-search.svg" alt="" />
                             </button>
+
                         </div>
+
                     </form>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  @*  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Shipping</a>
                         </li>
-                    </ul>
+                    </ul>*@
                     <ul class="navbar-nav d-flex flex-row ms-auto me-3">
 
                         <li>

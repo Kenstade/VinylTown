@@ -12,8 +12,8 @@
     </li>
     @for (int pag = 1; pag <=  Model.TotalPages; pag++)
     {
-        <li class="page-item @(pag == Model.PageNumber ? "active" : "")">
-            <a class="page-link" 
+        <li class="page-item @(pag == Model.PageNumber ? "active" : "") box-shadow">
+            <a class="page-link shadow-none" 
             asp-controller="Catalog" 
             asp-action="Index" 
             asp-route-page="@pag">@pag</a>

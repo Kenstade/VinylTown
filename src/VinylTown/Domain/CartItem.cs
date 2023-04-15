@@ -10,4 +10,7 @@ public class CartItem
     public string Image { get; set; }
     public int CostumerCartId { get; set; }
     public CostumerCart CostumerCart { get; set; }
+
 }
+
+

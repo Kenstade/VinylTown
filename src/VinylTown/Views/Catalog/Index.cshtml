@@ -24,13 +24,13 @@
                 foreach (var item in Model.Products)
                 {
                     <div class="col-md-12 col-lg-3 mb-3 mb-4">
-                        <div class="card">
+                        <div class="card border-0">
                             <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@item.Id">
                                 <img src="~/images/catalog/@item.Image" class="card-img-top" alt="@item.Name" />
                             </a>
                             <div class="card-body">
                                 <div class="text-center">
-                                    <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@item.Id">
+                                    <a class="text-decoration-none" asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@item.Id">
                                         <h6 class="mb-2">@item.Name</h6>
                                     </a>
                                     <h6 class="text-dark">$@item.Price.ToString("N2")</h6>
@@ -44,7 +44,7 @@
             }
             else
             {
-                <div class="col-md-12" style="text-align: center">
+                <div class="col-md-12 text-center pt-5">
                     <h2>There's no products available. Try searching with another criteria</h2>
                 </div>
             }

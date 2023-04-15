@@ -21,4 +21,11 @@ public class CartController : Controller
         return View(viewModel);
     }
 
+    [HttpPost("add-item")]
+    public async Task<IActionResult> AddItem(CartItemViewModel cartItem)
+    {
+        await _mediator.Send(new AddItemCommand { CartItem = cartItem});
+
+        return RedirectToAction("Index");
+    }
 }

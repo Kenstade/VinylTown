@@ -4,6 +4,7 @@
     ViewData["Title"] = "Your Shopping Cart";
 }
 
+<section class="container pt-5">
 @{
     if (Model.Items.Any())
     {
@@ -16,6 +17,7 @@
     }
     else
     {
-        <h1>Aboba</h1>
+        <h1 class="text-center">Your cart is empty</h1>
     }
 }
+</section>

@@ -4,14 +4,17 @@
 }
 
     <section class="container pt-3">
-        <div class="row mt-5">
-            <div class="col-lg-5 col-md-12 col-12">
-                <img class="img-fluid" src="~/images/catalog/@Model.Image" alt="@Model.Name" />
+            <div class="row">
+                    <div class="col-lg-5 col-md-12 col-12">
+                        <img class="img-fluid" src="~/images/catalog/@Model.Image" alt="@Model.Name" />
+                    </div>
+
+                    <input type="hidden" id="ProductId" name="ProductId" value="@Model.Id" />
+
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <h2>@Model.Name</h2>
+                        <h3 class="mb-5">$ @Model.Price</h3>
+                        <button type="submit" class="btn btn-success">ADD TO CARD</button>
+                    </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-12">
-                <h2>@Model.Name</h2>
-                <h3>@Model.Price</h3>
-                <button class="btn btn-success">ADD TO CARD</button>
-            </div>
-        </div>
     </section>
