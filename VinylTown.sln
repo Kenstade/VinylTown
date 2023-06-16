@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4273851C-080
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VinylTown", "src\VinylTown\VinylTown.csproj", "{45E6C9E3-4747-4903-8894-053EEC308752}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F61DD7D9-FFEE-48D3-8B61-1DAC529FCBBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{45E6C9E3-4747-4903-8894-053EEC308752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45E6C9E3-4747-4903-8894-053EEC308752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45E6C9E3-4747-4903-8894-053EEC308752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61DD7D9-FFEE-48D3-8B61-1DAC529FCBBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61DD7D9-FFEE-48D3-8B61-1DAC529FCBBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61DD7D9-FFEE-48D3-8B61-1DAC529FCBBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61DD7D9-FFEE-48D3-8B61-1DAC529FCBBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

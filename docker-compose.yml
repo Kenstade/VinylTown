@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  vinyltown:
+    image: ${DOCKER_REGISTRY-}vinyltown
+    build:
+      context: .
+      dockerfile: src/VinylTown/Dockerfile
+    ports:
+      - "8080:80"
+    depends_on: 
+      - "sqlserver"
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433" 
+    environment:
+        SA_PASSWORD: "password1111"
+        ACCEPT_EULA: "Y"

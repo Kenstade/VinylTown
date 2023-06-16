@@ -3,18 +3,34 @@
     ViewData["Title"] = Model.Name;
 }
 
-    <section class="container pt-3">
-            <div class="row">
-                    <div class="col-lg-5 col-md-12 col-12">
-                        <img class="img-fluid" src="~/images/catalog/@Model.Image" alt="@Model.Name" />
-                    </div>
-
-                    <input type="hidden" id="ProductId" name="ProductId" value="@Model.Id" />
-
-                    <div class="col-lg-6 col-md-12 col-12">
-                        <h2>@Model.Name</h2>
-                        <h3 class="mb-5">$ @Model.Price</h3>
-                        <button type="submit" class="btn btn-success">ADD TO CARD</button>
-                    </div>
+    <form asp-controller="Cart" asp-action="AddItem" method="post">
+<div class="container mb-5" style="width:80%">	
+    <div class="card border-0">
+        <div class="row">
+    
+            <div class="col-md-7 border-end">	
+                <img class="img-fluid" src="~/images/catalog/@Model.Image" alt="@Model.Name" style="width:750px">
+            </div>	
+            <div class="col-md-5">	
+                <div class="card-body mt-3">	
+                    <h3 class="fw-bold">@Model.Name</h3>	
+                    <div class="mt-4">	
+                    <p>@Model.Description</p>	
+                    </div>	
+                    <p class="fw-bold fs-5">$@Model.Price</p>	
+                    <div class="mt-2"></div>	
+                    <div class="buttons d-flex flex-row mt-2">	
+                        <button type="submit" class="btn btn-dark">ADD TO CARD</button>	
+                    </div>	
+                </div>	
             </div>
-    </section>
+                <input type="hidden" id="ProductId" name="ProductId" value="@Model.Id" />
+                <input type="hidden" asp-for="@Model.Id" name="id" />
+                <input type="hidden" asp-for="@Model.Name" name="name" />
+                <input type="hidden" asp-for="@Model.Price" name="price" />
+                <input type="hidden" asp-for="@Model.Image" name="image" />
+            
+        </div>	
+    </div> 
+</div>
+</form>

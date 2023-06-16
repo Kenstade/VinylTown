@@ -4,20 +4,82 @@
     ViewData["Title"] = "Your Shopping Cart";
 }
 
-<section class="container pt-5">
-@{
-    if (Model.Items.Any())
-    {
-        <div>
-            @foreach (var item in Model.Items)
+<section class="h-100 h-custom">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        @{
+            if (Model.Items.Any())
             {
-                @item.Name               
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>                   
+                        @foreach (var item in Model.Items)
+                        {                                           
+                        <tr>
+                            <th scope="row">
+                                <a asp-controller="Catalog" asp-action="ProductDetails" asp-route-id="@item.Id" class="d-flex align-items-center text-decoration-none">
+                                <img src="~/images/catalog/@item.Image" class="card" style="width:120px" alt="@item.Name" />
+                                <div class="flex-column ms-4">
+                                    <p class="mb-2">@item.Name</p>
+                                    @*<p class="mb-0">Daniel Kahneman</p>*@
+                                </div>
+                                </a>
+                            </th>
+                            
+                            <td class="align-middle">
+                                <p class="mb-0" style="font-weight: 500;">@item.Quantity</p>
+                            </td>
+                            <td class="align-middle">
+                                <p class="mb-0" style="font-weight: 500;">@item.Price</p>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row justify-content-end">           
+                <div class="col-lg-4 col-xl-3">
+                <div class="d-flex justify-content-between" style="font-weight: 500;">
+                    <p class="mb-2">Subtotal</p>
+                    <p class="mb-2">$54.9</p>
+                </div>
+
+                <div class="d-flex justify-content-between" style="font-weight: 500;">
+                    <p class="mb-0">Shipping</p>
+                    <p class="mb-0">$2.99</p>
+                </div>
+
+                <hr class="my-2">
+
+                <div class="d-flex justify-content-between mb-2" style="font-weight: 500;">
+                    <p class="mb-2">Total (tax included)</p>
+                    <p class="mb-2">$57.89</p>
+                </div>
+
+                <div class="d-grid gap-2">
+                <button type="button" class="btn btn-dark">
+                        Checkout
+                </button>
+                </div>
+                </div>
+            </div>
             }
+            else
+            {
+                <h1 class="text-center">Your cart is empty</h1>
+            }
+        }
         </div>
-    }
-    else
-    {
-        <h1 class="text-center">Your cart is empty</h1>
-    }
-}
+      </div>
+    </div>
 </section>
